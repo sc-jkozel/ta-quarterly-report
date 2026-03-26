@@ -1,0 +1,44 @@
+STEP 1: PULL RAW DATA
+
+Query Salesforce for these {num_opportunities} Opportunity IDs. Return a single table called "raw_opportunities" with these columns: Opportunity Name, Opportunity ID, Account Name, Stage, Close Date, Created Date, Rollup Amount in AUD, Industry Type, Region.
+
+Opportunity IDs:
+{all_opportunity_ids}
+
+Add a column called "Technical Architect" using this mapping:
+{ta_mappings}
+
+Add a column called "Fiscal Quarter" using a July 1 fiscal year start:
+{quarter_ranges}
+- If Close Date falls outside these ranges, label it "Other"
+
+
+STEP 2: BUILD ALL 7 SUMMARY OUTPUTS
+
+You must produce all 7 of the following outputs. Do not stop until all 7 are complete.
+
+OUTPUT 1 - "closed_won_count": A table showing Closed Won count by Technical Architect and Fiscal Quarter, with a Team Total row.
+
+OUTPUT 2 - "closed_won_total_aud": A table showing the sum of Rollup Amount in AUD for Closed Won opportunities, by Technical Architect and Fiscal Quarter, with a Team Total row.
+
+OUTPUT 3 - "closed_lost_count": A table showing Closed Lost count by Technical Architect and Fiscal Quarter, with a Team Total row.
+
+OUTPUT 4 - "win_rate": A table showing Win Rate (Closed Won divided by Closed Won plus Closed Lost, as a percentage) by Technical Architect and Fiscal Quarter, with a Team Total row.
+
+OUTPUT 5 - "open_pipeline": A table showing Open Pipeline count and sum of Rollup Amount in AUD for opportunities that are not Closed Won or Closed Lost, by Technical Architect and Fiscal Quarter, with a Team Total row.
+
+OUTPUT 6 - "average_deal_size": A table showing Average Deal Size in AUD (Closed Won Total AUD divided by Closed Won Count) by Technical Architect and Fiscal Quarter, with a Team Total row.
+
+OUTPUT 7 - "opportunity_velocity": A table showing average number of days from Created Date to Close Date for Closed Won opportunities, by Technical Architect and Fiscal Quarter, with a Team Total row.
+
+
+STEP 3: INDUSTRY BREAKDOWNS
+
+After all 7 outputs above are complete, produce two additional tables:
+
+OUTPUT 8 - "industry_closed_won": Count and total AUD for Closed Won opportunities grouped by Industry Type, by Fiscal Quarter and overall.
+
+OUTPUT 9 - "industry_open_pipeline": Count and total AUD for Open Pipeline opportunities grouped by Industry Type, by Fiscal Quarter and overall.
+
+
+IMPORTANT: You must return all 9 outputs in a single response. Do not summarize or skip any output.

@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install:*)",
+      "Bash(pip3 install:*)",
+      "Bash(python3 -m venv .venv)",
+      "Bash(source .venv/bin/activate)",
+      "Bash(python -m src.main)",
+      "Bash(python3 -c \":*)",
+      "Bash(open /Users/jason.kozel/Documents/apps/ta-quarterly-report/output/ta_impact_report_2026-03-25.pptx)",
+      "Bash(curl -LsSf https://astral.sh/uv/install.sh)",
+      "Bash(sh)",
+      "Bash(brew install:*)",
+      "Bash(source ~/.cargo/env)",
+      "Bash(uv --version)",
+      "Bash(export PATH=\"$HOME/.cargo/bin:$HOME/.local/bin:$PATH\")",
+      "Bash(export PATH=\"$HOME/.local/bin:$PATH\")",
+      "Bash(uv venv:*)",
+      "Bash(uv sync:*)",
+      "Bash(uv run:*)",
+      "Bash(for f:*)",
+      "Bash(do if:*)",
+      "Bash(! grep:*)",
+      "Bash(then echo:*)",
+      "Bash(fi)",
+      "Read(//Users/jason.kozel/.local/bin/**)",
+      "Read(//usr/local/bin/**)",
+      "Bash(command -v uv)",
+      "Bash(/Users/jason.kozel/.local/bin/uv run:*)",
+      "Bash(~/.local/bin/uv run:*)"
+    ]
+  }
+}
