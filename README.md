@@ -92,8 +92,9 @@ src/
 ├── config.py            # Report config (TAs, labels, fiscal year, quarter ranges)
 ├── hex_prompt.py        # CSV parser + Hex prompt template renderer
 ├── templates/
-│   ├── hex_prompt.txt       # Hex prompt template with placeholders
-│   └── ta_analysis_prompt.md # Data analysis prompt for insight generation
+│   ├── hex_prompt.txt         # Hex prompt template with placeholders
+│   ├── ta_analysis_prompt.md  # Data analysis prompt for insight generation
+│   └── ta_charter_context.md  # TA function scope and guardrails
 ├── data/
 │   └── models.py        # Pydantic models for JSON inputs
 ├── insights/

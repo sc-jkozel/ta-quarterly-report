@@ -1,4 +1,4 @@
-"""Slide 4: By Technical Architect - per-TA breakdown cards."""
+"""Slide: TA Pipeline — per-TA pipeline breakdown cards."""
 
 from pptx.presentation import Presentation
 from pptx.util import Inches, Pt
@@ -14,7 +14,7 @@ from src.deck.slides.helpers import (
 )
 
 
-def build(prs: Presentation, ta_cards: list[dict], config=None, **kwargs):
+def build(prs: Presentation, pipeline_cards: list[dict], config=None, **kwargs):
     from src.config import ReportConfig
     if config is None:
         config = ReportConfig()
@@ -24,7 +24,7 @@ def build(prs: Presentation, ta_cards: list[dict], config=None, **kwargs):
 
     # Title
     add_textbox(
-        slide, f"{config.fiscal_year.upper()} Performance by Architect",
+        slide, "TA Pipeline Overview",
         Inches(0.75), Inches(0.4), Inches(6), Inches(0.5),
         font_name=FONT_HEADING, font_size=Pt(24),
         font_color=WHITE_RABBIT, bold=True,
@@ -33,13 +33,13 @@ def build(prs: Presentation, ta_cards: list[dict], config=None, **kwargs):
     # Build TA info lookup
     ta_info = {ta["name"]: ta for ta in TECHNICAL_ARCHITECTS}
 
-    # Layout: 2x2 grid for 4 TAs
+    # Layout: 2x2 grid
     card_w = Inches(5.7)
     card_h = Inches(2.5)
     x_positions = [Inches(0.75), Inches(6.85)]
     y_positions = [Inches(1.3), Inches(4.1)]
 
-    for i, card in enumerate(ta_cards[:4]):
+    for i, card in enumerate(pipeline_cards[:4]):
         col = i % 2
         row = i // 2
         x = x_positions[col]
@@ -81,12 +81,12 @@ def build(prs: Presentation, ta_cards: list[dict], config=None, **kwargs):
 
         # Metrics grid - 2 columns
         metrics_left = [
-            ("Won / Lost", card["record"]),
-            ("Booked (AUD)", card["booked_fmt"]),
+            ("Open Pipeline (AUD)", card["open_pipeline_fmt"]),
+            ("In Negotiation / Proposal", str(card["late_stage_count"])),
         ]
         metrics_right = [
-            ("Win Rate", card["win_rate_fmt"]),
-            ("Avg Velocity", card["velocity_fmt"]),
+            ("Open Opportunities", str(card["open_count"])),
+            ("Top Deal", f"{card['top_deal_name'][:25]}"),
         ]
 
         for j, (label, val) in enumerate(metrics_left):
@@ -115,15 +115,26 @@ def build(prs: Presentation, ta_cards: list[dict], config=None, **kwargs):
                 font_name=FONT_BODY, font_size=Pt(9),
                 font_color=MID_GRAY,
             )
+            # Use smaller font for Top Deal row to fit long account names
+            is_top_deal = label == "Top Deal"
             add_textbox(
                 slide, val,
                 x + Inches(2.8), my + Inches(0.2),
-                Inches(2.2), Inches(0.25),
-                font_name=FONT_BODY, font_size=Pt(13),
+                Inches(2.6), Inches(0.25),
+                font_name=FONT_BODY, font_size=Pt(11) if is_top_deal else Pt(13),
                 font_color=BLUE_MOON, bold=True,
             )
+            # Show deal value and stage below the deal name
+            if is_top_deal and card["top_deal_fmt"] != "N/A":
+                add_textbox(
+                    slide, f"{card['top_deal_fmt']} — {card['top_deal_stage']}",
+                    x + Inches(2.8), my + Inches(0.42),
+                    Inches(2.6), Inches(0.2),
+                    font_name=FONT_BODY, font_size=Pt(9),
+                    font_color=MID_GRAY,
+                )
 
-    # Note for any newly-joined TAs not yet reflected in data
+    # Note for any newly-joined TAs
     new_tas = [
         ta for ta in TECHNICAL_ARCHITECTS if ta.get("new")
     ]
@@ -131,7 +142,7 @@ def build(prs: Presentation, ta_cards: list[dict], config=None, **kwargs):
         names = ", ".join(
             f"{ta['name']} ({ta['region']})" for ta in new_tas
         )
-        note = f"{names} recently joined the team — not yet reflected in opportunity data."
+        note = f"{names} recently joined the team — not yet reflected in pipeline data."
         add_textbox(
             slide, note,
             Inches(0.75), Inches(6.8), Inches(10), Inches(0.3),

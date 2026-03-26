@@ -59,7 +59,7 @@ def build(prs: Presentation, data: ReportData, metrics: dict, **kwargs):
     cards = [
         (format_currency(metrics["open_pipeline_aud"]), "Open Pipeline (AUD)"),
         (format_currency(avg_pipeline_deal), "Avg Deal Size in Pipeline"),
-        (str(open_count), "Opportunities in Pipeline"),
+        (str(open_count), "Open Opportunities"),
     ]
 
     card_w = Inches(3.75)

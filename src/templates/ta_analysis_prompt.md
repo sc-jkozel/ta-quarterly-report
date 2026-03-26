@@ -1,6 +1,8 @@
 # Technical Architect Function — Data Analysis Prompt
 
-You are analyzing performance data for SafetyCulture's Technical Architect (TA) function. This is a pre-sales technical function that supports complex enterprise sales opportunities. The function is relatively new.
+You are analyzing performance data for SafetyCulture's Technical Architect (TA) function. Before analyzing, read the charter context in `src/templates/ta_charter_context.md` — it defines what TAs do, what they don't do, and how they engage. All insights and recommendations must stay within that scope.
+
+TAs are a **presales** function — not salespeople. They help GTM win bigger and close faster through technical discovery, solution architecture, integration design, risk mitigation, and building trust with IT leaders. They do NOT own revenue targets, pricing, standard demos, solution delivery, or project management.
 
 ## Team Context (update before each use)
 
@@ -34,13 +36,47 @@ For each insight you identify:
 3. Note any caveats, small sample sizes, or alternative explanations
 4. Flag whether this is a strong signal or a preliminary pattern that needs more data
 
+## Interpreting Losses
+
+Closed Lost is not inherently negative for the TA function. A core part of the TA role is **derisking opportunities** — identifying technical gaps, misaligned requirements, or integration blockers early in the sales cycle. A deal that is qualified out because a TA surfaced a fundamental technical mismatch is a success, not a failure. It prevents wasted cycles for the AE, the customer, and post-sales teams.
+
+When analyzing losses:
+- Do NOT frame loss volume as a problem by default
+- Consider whether losses indicate the function is doing its job — qualifying out bad-fit deals
+- Only flag losses as concerning when there is evidence of systemic issues (e.g., losses concentrated in a specific stage suggesting late engagement, or losses where deal size suggests the TA shouldn't have been engaged)
+- The data does not tell you *why* a deal was lost — avoid assuming losses are TA failures without evidence
+
 Consider (but don't limit yourself to) these analytical lenses:
 - How do outcomes vary across the team, and what factors might explain differences?
 - What does the pipeline composition suggest about deal complexity and the function's role?
 - Are there patterns in which deals are won vs. lost (size, industry, deal cycle length, deal type)?
 - What does the trajectory across quarters suggest about the function's maturation?
+- Are TAs being engaged on the right opportunities (100k+ AUD, complex integrations, highly strategic)?
 - Are there opportunities in the pipeline?
+- Are losses showing healthy deal qualification, or are there patterns that suggest something else?
 - What does the data NOT tell you that would be important to know?
+
+## Action Item Guardrails
+
+When generating action items ("What's Next"), recommendations MUST be within the TA function's scope:
+
+**In scope:**
+- Improving technical discovery quality or coverage
+- Engagement criteria adherence (are TAs on the right deals?)
+- Solution architecture and integration patterns
+- Derisking pipeline (technical validation, SAO completion)
+- Building trust with IT leaders / technical stakeholders
+- Handoff quality to post-sales teams
+- Team enablement (industry knowledge, technical depth)
+- Regional coverage and capacity planning
+
+**Out of scope — do NOT recommend:**
+- Revenue targets or quota attainment strategies
+- Pricing or discounting tactics
+- Demo improvements (standard demos are field team responsibility)
+- Solution delivery or post-sales activities
+- Product management or feature requests
+- Project management activities
 
 ## Audience
 

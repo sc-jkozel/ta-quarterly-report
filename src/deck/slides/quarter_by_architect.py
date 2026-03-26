@@ -1,4 +1,4 @@
-"""Slide 4: By Technical Architect - per-TA breakdown cards."""
+"""Quarter-specific version of the per-TA breakdown slide."""
 
 from pptx.presentation import Presentation
 from pptx.util import Inches, Pt
@@ -19,13 +19,15 @@ def build(prs: Presentation, ta_cards: list[dict], config=None, **kwargs):
     if config is None:
         config = ReportConfig()
 
+    quarter_label = f"{config.quarter.upper()} {config.fiscal_year.upper()}"
+
     slide = add_blank_slide(prs)
     set_slide_bg(slide, DARK_CHARCOAL)
 
     # Title
     add_textbox(
-        slide, f"{config.fiscal_year.upper()} Performance by Architect",
-        Inches(0.75), Inches(0.4), Inches(6), Inches(0.5),
+        slide, f"{quarter_label} Performance by Architect",
+        Inches(0.75), Inches(0.4), Inches(8), Inches(0.5),
         font_name=FONT_HEADING, font_size=Pt(24),
         font_color=WHITE_RABBIT, bold=True,
     )
@@ -33,7 +35,7 @@ def build(prs: Presentation, ta_cards: list[dict], config=None, **kwargs):
     # Build TA info lookup
     ta_info = {ta["name"]: ta for ta in TECHNICAL_ARCHITECTS}
 
-    # Layout: 2x2 grid for 4 TAs
+    # Layout: 2x2 grid for up to 4 TAs
     card_w = Inches(5.7)
     card_h = Inches(2.5)
     x_positions = [Inches(0.75), Inches(6.85)]

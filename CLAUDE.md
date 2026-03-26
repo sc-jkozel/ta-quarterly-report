@@ -50,9 +50,12 @@ Do NOT proceed to Hex until the user confirms.
 
 ### Step 5: Generate insights
 
-Use the analysis prompt at `src/templates/ta_analysis_prompt.md` to guide this step. Read that file first, then read `output/report_data.json` and perform the analysis it describes.
+Read these files first, in order:
+1. `src/templates/ta_charter_context.md` — Defines the TA function's scope, what TAs do and don't do
+2. `src/templates/ta_analysis_prompt.md` — Analysis methodology and action item guardrails
+3. `output/report_data.json` — The data to analyze
 
-**Important:** Let the data lead. Do not start with a predetermined narrative. Every insight must reference specific numbers from the data.
+**Important:** TAs are a presales function, not salespeople. All insights and action items must stay within the TA charter scope. Do not recommend sales tactics, revenue targets, pricing strategies, or activities outside the TA function. Let the data lead. Every insight must reference specific numbers.
 
 Once the analysis is complete, map the findings to the `Insights` model and write `output/insights.json`:
 
