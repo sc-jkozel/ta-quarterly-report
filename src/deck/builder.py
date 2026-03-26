@@ -42,7 +42,7 @@ def build_deck(
 
     # Build slides
     title_slide.build(prs, config=config)
-    hero_metric.build(prs, metrics=metrics)
+    hero_metric.build(prs, metrics=metrics, config=config)
     pipeline.build(prs, data=data, metrics=metrics)
     by_architect.build(prs, ta_cards=ta_cards)
     reading_data.build(prs, insights=insights)

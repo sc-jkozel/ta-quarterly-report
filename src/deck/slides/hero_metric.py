@@ -13,16 +13,20 @@ from src.deck.slides.helpers import (
 )
 
 
-def build(prs: Presentation, metrics: dict, **kwargs):
+def build(prs: Presentation, metrics: dict, config=None, **kwargs):
+    from src.config import ReportConfig
+    if config is None:
+        config = ReportConfig()
+
     slide = add_blank_slide(prs)
     set_slide_bg(slide, DARK_CHARCOAL)
 
-    # Section label
+    # Title
     add_textbox(
-        slide, "HEADLINE METRICS",
-        Inches(0.75), Inches(0.5), Inches(4), Inches(0.3),
-        font_name=FONT_BODY, font_size=Pt(10),
-        font_color=PURPLE_RAIN, bold=True,
+        slide, f"{config.fiscal_year.upper()} Metrics",
+        Inches(0.75), Inches(0.4), Inches(6), Inches(0.5),
+        font_name=FONT_HEADING, font_size=Pt(24),
+        font_color=WHITE_RABBIT, bold=True,
     )
 
     # Win rate - big number
