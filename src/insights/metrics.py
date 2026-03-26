@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from src.config import TEAM_TOTAL_LABEL
+from src.config import TEAM_TOTAL_LABEL, TECHNICAL_ARCHITECTS
 from src.data.models import ReportData
 
 
@@ -65,11 +65,15 @@ def compute_headline_metrics(data: ReportData) -> dict:
 
 
 def compute_ta_cards(data: ReportData) -> list[dict]:
-    """Compute per-TA card data."""
+    """Compute per-TA card data.
+
+    Uses TECHNICAL_ARCHITECTS config as the source of truth so every TA
+    appears even if they have no closed-won deals yet.  TAs marked as
+    ``"new": True`` are excluded — they get a footnote instead.
+    """
     ta_names = [
-        r.technical_architect
-        for r in data.closed_won_count
-        if r.technical_architect != TEAM_TOTAL_LABEL
+        ta["name"] for ta in TECHNICAL_ARCHITECTS
+        if not ta.get("new")
     ]
     cards = []
     for name in ta_names:

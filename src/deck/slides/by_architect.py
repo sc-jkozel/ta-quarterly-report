@@ -14,13 +14,17 @@ from src.deck.slides.helpers import (
 )
 
 
-def build(prs: Presentation, ta_cards: list[dict], **kwargs):
+def build(prs: Presentation, ta_cards: list[dict], config=None, **kwargs):
+    from src.config import ReportConfig
+    if config is None:
+        config = ReportConfig()
+
     slide = add_blank_slide(prs)
     set_slide_bg(slide, DARK_CHARCOAL)
 
     # Title
     add_textbox(
-        slide, "By Technical Architect",
+        slide, f"{config.fiscal_year.upper()} Performance by Architect",
         Inches(0.75), Inches(0.4), Inches(6), Inches(0.5),
         font_name=FONT_HEADING, font_size=Pt(24),
         font_color=WHITE_RABBIT, bold=True,

@@ -42,14 +42,14 @@ def build_deck(
     ta_cards = compute_ta_cards(data)
 
     # Build slides
-    title_slide.build(prs, config=config)
-    hero_metric.build(prs, metrics=metrics, config=config)
-    current_pipeline.build(prs, data=data, metrics=metrics)
-    pipeline.build(prs, data=data, metrics=metrics, config=config)
-    by_architect.build(prs, ta_cards=ta_cards)
-    reading_data.build(prs, insights=insights)
-    whats_next.build(prs, insights=insights)
-    closing.build(prs, config=config, insights=insights)
+    title_slide.build(prs, config=config)                       # 1. Title
+    hero_metric.build(prs, metrics=metrics, config=config)      # 2. FY Metrics
+    by_architect.build(prs, ta_cards=ta_cards, config=config)   # 3. Performance by Architect
+    current_pipeline.build(prs, data=data, metrics=metrics)     # 4. Current TA Pipeline
+    pipeline.build(prs, data=data, metrics=metrics, config=config)  # 5. TA Pipeline by Industry
+    reading_data.build(prs, insights=insights)                  # 6. Reading the Data
+    whats_next.build(prs, insights=insights)                    # 7. What's Next
+    closing.build(prs, config=config, insights=insights)        # 8. Closing
 
     # Save
     output_path = Path(output_dir)
