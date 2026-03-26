@@ -87,16 +87,15 @@ def build(prs: Presentation, metrics: dict, config=None, **kwargs):
 
     # Bottom metrics row
     bottom_metrics = [
-        (metrics["open_pipeline_aud_fmt"], "Open Pipeline (AUD)", f"{metrics['open_pipeline_count']} active deals"),
         (metrics["avg_deal_size_fmt"], "Avg Deal Size (AUD)", "closed-won average"),
         (str(metrics["total_opportunities"]), "Total Opportunities", "all TA-engaged"),
     ]
 
-    card_width = Inches(3.75)
+    card_width = Inches(5.6)
     card_height = Inches(1.6)
     start_x = Inches(0.75)
     y = Inches(4.8)
-    gap = Inches(0.29)
+    gap = Inches(0.45)
 
     for i, (val, label, sub) in enumerate(bottom_metrics):
         x = start_x + i * (card_width + gap)

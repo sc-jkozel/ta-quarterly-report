@@ -14,6 +14,7 @@ from src.deck.styles import SLIDE_WIDTH, SLIDE_HEIGHT
 from src.deck.slides import (
     title_slide,
     hero_metric,
+    current_pipeline,
     pipeline,
     by_architect,
     reading_data,
@@ -43,7 +44,8 @@ def build_deck(
     # Build slides
     title_slide.build(prs, config=config)
     hero_metric.build(prs, metrics=metrics, config=config)
-    pipeline.build(prs, data=data, metrics=metrics)
+    current_pipeline.build(prs, data=data, metrics=metrics)
+    pipeline.build(prs, data=data, metrics=metrics, config=config)
     by_architect.build(prs, ta_cards=ta_cards)
     reading_data.build(prs, insights=insights)
     whats_next.build(prs, insights=insights)

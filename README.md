@@ -55,15 +55,16 @@ Claude Code follows a step-by-step workflow defined in `CLAUDE.md`:
 
 ## Deck Output
 
-7-slide branded deck:
+8-slide branded deck:
 
 1. **Title** — "Technical Architect Impact Report" with quarter, date, and hero stat (e.g. 2.2x win rate)
-2. **Hero Metric** — Team win rate, booked revenue, and key summary stats
-3. **Pipeline & Coverage** — 6-metric grid (pipeline, revenue, enterprise %, expansion %, qualified opps, avg deal size)
-4. **By Technical Architect** — Per-TA cards (McManus, Soakell, Loewen, Coates)
-5. **Reading the Data** — Strong Signals / Watch & Evolve narratives
-6. **What's Next** — Numbered action items
-7. **Closing** — Summary statement with author attribution
+2. **FY Metrics** — Team win rate, booked revenue, avg deal size, and total opportunities
+3. **Current Pipeline** — Open pipeline, avg pipeline deal size, opportunity count cards + stage breakdown chart
+4. **Industry Pipeline** — Horizontal bar chart showing open pipeline by industry vertical
+5. **By Technical Architect** — Per-TA cards (McManus, Soakell, Loewen, Coates)
+6. **Reading the Data** — Strong Signals / Watch & Evolve narratives
+7. **What's Next** — Numbered action items
+8. **Closing** — Summary statement with author attribution
 
 ## Data Sources
 
@@ -102,13 +103,14 @@ src/
     ├── styles.py        # SafetyCulture brand constants
     └── slides/
         ├── helpers.py       # Shared shape/text utilities
-        ├── title_slide.py   # Slide 1
-        ├── hero_metric.py   # Slide 2
-        ├── pipeline.py      # Slide 3
-        ├── by_architect.py  # Slide 4
-        ├── reading_data.py  # Slide 5
-        ├── whats_next.py    # Slide 6
-        └── closing.py       # Slide 7
+        ├── title_slide.py       # Slide 1
+        ├── hero_metric.py       # Slide 2
+        ├── current_pipeline.py  # Slide 3
+        ├── pipeline.py          # Slide 4
+        ├── by_architect.py      # Slide 5
+        ├── reading_data.py      # Slide 6
+        ├── whats_next.py        # Slide 7
+        └── closing.py           # Slide 8
 ```
 
 ## Style Guide
