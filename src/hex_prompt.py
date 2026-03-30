@@ -19,6 +19,24 @@ def _looks_like_opp_id(value: str) -> bool:
     return bool(_SFDC_OPP_ID_RE.match(value.strip()))
 
 
+def sf_id_15_to_18(id15: str) -> str:
+    """Convert a 15-char Salesforce ID to its 18-char equivalent.
+
+    The 18-char ID appends a 3-char checksum that encodes the case of the
+    original 15 characters, allowing case-insensitive matching in databases.
+    Already-18-char IDs are returned unchanged.
+    """
+    if len(id15) == 18:
+        return id15
+    suffix_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ012345"
+    suffix = ""
+    for chunk_start in range(0, 15, 5):
+        chunk = id15[chunk_start : chunk_start + 5]
+        bits = sum(1 << i for i, ch in enumerate(chunk) if ch.isupper())
+        suffix += suffix_chars[bits]
+    return id15 + suffix
+
+
 def parse_csv(csv_path: str | Path) -> list[dict[str, str]]:
     """Read opportunity CSV, auto-detecting whether a header row is present.
 
@@ -41,7 +59,7 @@ def parse_csv(csv_path: str | Path) -> list[dict[str, str]]:
     for i, row in enumerate(data_rows, start=2 if has_header else 1):
         if len(row) < 2:
             continue
-        opp_id = row[0].strip()
+        opp_id = sf_id_15_to_18(row[0].strip())
         ta_name = row[1].strip()
         region = row[2].strip() if len(row) > 2 else ""
         if not opp_id:
