@@ -46,18 +46,19 @@ Do NOT proceed to Hex until the user confirms.
    - Wait 30 seconds, then poll `get_thread` up to 5 times (same rules as above)
    - Append the returned records to `raw_opportunities`
    - Repeat until every ID from the CSV is present in `raw_opportunities`
-6. Write structured data to `output/report_data.json`
+6. Write structured data to `output/report_data.json`. **Schema authority: `src/data/models.py` (`ReportData` model). Do NOT infer the schema from any existing `output/report_data.json` file — that file may contain data from a previous run.**
 
 ### Step 5: Generate insights
 
 Read these files first, in order:
 1. `src/templates/ta_charter_context.md` — Defines the TA function's scope, what TAs do and don't do
 2. `src/templates/ta_analysis_prompt.md` — Analysis methodology and action item guardrails
-3. `output/report_data.json` — The data to analyze
+3. `src/data/models.py` — Canonical schema for `ReportData` and `Insights` models
+4. `output/report_data.json` — The data to analyze (read for data only, not schema)
 
 **Important:** TAs are a presales function, not salespeople. All insights and action items must stay within the TA charter scope. Do not recommend sales tactics, revenue targets, pricing strategies, or activities outside the TA function. Let the data lead. Every insight must reference specific numbers.
 
-Once the analysis is complete, map the findings to the `Insights` model and write `output/insights.json`:
+Once the analysis is complete, map the findings to the `Insights` model (defined in `src/data/models.py`) and write `output/insights.json`:
 
 ```json
 {
