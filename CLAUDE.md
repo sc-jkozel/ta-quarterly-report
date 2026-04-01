@@ -58,6 +58,8 @@ Read these files first, in order:
 
 **Important:** TAs are a presales function, not salespeople. All insights and action items must stay within the TA charter scope. Do not recommend sales tactics, revenue targets, pricing strategies, or activities outside the TA function. Let the data lead. Every insight must reference specific numbers.
 
+**Closed Lost is neutral, not negative.** A core TA function is derisking opportunities — qualifying out bad-fit deals is a success. Closed Lost can improve the broader SafetyCulture win rate by preventing wasted cycles. Do not frame loss volume as a problem. See `src/templates/ta_analysis_prompt.md` § "Interpreting Losses" for detailed guidance.
+
 Once the analysis is complete, map the findings to the `Insights` model (defined in `src/data/models.py`) and write `output/insights.json`:
 
 ```json
