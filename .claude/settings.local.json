@@ -28,7 +28,10 @@
       "Bash(command -v uv)",
       "Bash(/Users/jason.kozel/.local/bin/uv run:*)",
       "Bash(~/.local/bin/uv run:*)",
-      "Bash(export PATH=\"$HOME/.local/bin:$HOME/.cargo/bin:$PATH\")"
+      "Bash(export PATH=\"$HOME/.local/bin:$HOME/.cargo/bin:$PATH\")",
+      "Bash(~/.local/bin/uv --version)",
+      "Bash(~/.cargo/bin/uv --version)",
+      "Bash(~/.cargo/bin/uv run:*)"
     ]
   }
 }
